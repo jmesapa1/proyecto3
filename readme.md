@@ -25,3 +25,5 @@ Toda la informacion es guardada en una lista
 2-Contador
 
 una vez ejecutado el programa clearData.py y guardado los datos de cada noticia en una posicion se recorre esta lista posicion a posicion para asi crear una coleccion de palabras de cada noticia para generar un contador que aumente cada vez que encuentre una coincidencia 
+
+https://databricks-prod-cloudfront.cloud.databricks.com/public/4027ec902e239c93eaaa8714f173bcfc/2270583156149495/2944819796898215/4851533722723077/latest.html
