@@ -1,3 +1,5 @@
+#.........PARA PROYECTO
+
 import io
 import nltk 
 nltk.download('stopwords')
@@ -6,7 +8,7 @@ from nltk.tokenize import sent_tokenize, word_tokenize
 from nltk.corpus import stopwords
 from nltk.tokenize import RegexpTokenizer 
 
-lineas=sc.textFile('dbfs:///FileStore/tables/TextoPrueba.txt')
+lineas=sc.textFile('dbfs:///FileStore/tables/prueba.csv')
 lineasCollect=lineas.flatMap(lambda line: line.split('\n')).collect()
 wordsFiltered=[]
 global contadorComas
@@ -17,14 +19,17 @@ stopWords=set(stopwords.words('english'))
 contador=0
 tokenizer = RegexpTokenizer(r'\w+') 
 LineFiltered=[]
+tittle=[]
 for linea in lineasCollect:
   contadorComas=0
   linea=linea.lower()
   indice=""
   contenido=""
   contenidoLimpio=""
+  titulo=""
   limpio=[]
   wordsFiltered=[]
+  
   
   for x in linea:
      
@@ -33,6 +38,9 @@ for linea in lineasCollect:
         
       else:  
         contenido=contenido+x
+        
+      
+        
         
         
     
@@ -49,7 +57,13 @@ for linea in lineasCollect:
       if comilla==True :
         if x==',':
           contadorComas-=1
- 
+      
+      if contadorComas >=2 and contadorComas < 3:
+        titulo=titulo+x
+  tittle.append(titulo)      
+        
+        
+       
      
   limpio = tokenizer.tokenize(contenido)
   
@@ -61,5 +75,7 @@ for linea in lineasCollect:
   contenidoLimpio=" ".join(wordsFiltered)
   contenidoLimpio=indice+contenidoLimpio
   LineFiltered.append(contenidoLimpio)
+  
+  
 print(LineFiltered)   
   
